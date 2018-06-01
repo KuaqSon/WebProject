@@ -2,7 +2,7 @@ var express = require('express');
 var path = require('path');
 var mongoose = require('mongoose');
 var config = require('./config/database');
-var bodyParser = require(body-parser);
+var bodyParser = require('body-parser');
 var session = require('express-session');
 var expressValidator = require('express-validator');
 
