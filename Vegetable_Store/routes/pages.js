@@ -7,4 +7,16 @@ router.get('/',function(req, res){
     });
 });
 
+/*
+ * post reoder 
+ */
+router.get('/reorder-pages', function(req, res){
+    Page.find({}).sort({sorting: 1}).exec(function(err, pages) {
+        res.render('admin/pages', {
+            pages: pages
+        });
+    });
+});
+
+
 module.exports = router;

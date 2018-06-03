@@ -16,7 +16,7 @@ var PageSchema = mongoose.Schema({
         require:true
     },
 
-    storting:{
+    sorting:{
         type: Number,
     }
 });
