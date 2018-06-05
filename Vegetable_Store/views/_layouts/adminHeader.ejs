@@ -32,6 +32,9 @@
           <li>
             <a href="/admin/pages">Pages</a>
           </li>
+          <li>
+            <a href="/admin/categories">Categories</a>
+          </li>
           <!--            <li><a href="#about">About</a></li> -->
           <!--            <li><a href="#contact">Contact</a></li> -->
         </ul>
@@ -55,3 +58,11 @@
   <!--</html> -->
   <div class="container">
     <%- messages('messages', locals) %>
+
+      <% if (errors) {%>
+        <% errors.forEach(function(error)  { %>
+          <div class="alert-danger">
+            <%= error.msg %>
+          </div>
+        <% });%>
+      <% } %>

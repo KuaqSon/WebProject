@@ -21,6 +21,10 @@ var app = express();
 app.set('views', path.join(__dirname,'views'));
 app.set('view engine','ejs');
 
+// Set public folder
+app.use(express.static(path.join(__dirname, 'public')));
+// Set global errors 
+app.locals.errors = null;
 // Body parser
 
 // parse application/x-www-form-urlencoded
@@ -48,7 +52,7 @@ app.use(session({
         , formParam = root;
   
         while(namespace.length) {
-            formParam += '[' + namespace.shift()
+            formParam += '[' + namespace.shift() + ']';
         }
         return{
             param: formParam,
@@ -78,9 +82,12 @@ app.get('/', function(req, res){
 // Set routes
 var pages = require('./routes/pages.js');
 var adminPages = require('./routes/admin_pages.js');
+var adminCategories = require('./routes/admin_categories.js');
 
 app.use('/', pages);
 app.use('/admin/pages', adminPages);
+app.use('/admin/categories', adminCategories);
+
 
 
 var port = 3000;
