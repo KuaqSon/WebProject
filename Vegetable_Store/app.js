@@ -5,6 +5,7 @@ var config = require('./config/database');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var expressValidator = require('express-validator');
+var fileUpload = require('express-fileupload');
 
 
 
@@ -25,6 +26,10 @@ app.set('view engine','ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 // Set global errors 
 app.locals.errors = null;
+
+// Express fileUpload middleware
+app.use(fileUpload());
+
 // Body parser
 
 // parse application/x-www-form-urlencoded
@@ -59,6 +64,23 @@ app.use(session({
             msg: msg,
             value: value
         };
+    },
+    customValidators: {
+        isImage: function(value, filename){
+            var extension = (path.extname(filename)).toLowerCase();
+            switch (extension) {
+                case '.jpg':
+                    return '.jpg';
+                case '.png':
+                    return '.png';
+                case '.jpeg':
+                    return '.jpeg';
+                case '':
+                    return '.jpg';
+                default:
+                    return false;
+            }
+        }
     }
   }));
 // Express-messages
@@ -83,10 +105,13 @@ app.get('/', function(req, res){
 var pages = require('./routes/pages.js');
 var adminPages = require('./routes/admin_pages.js');
 var adminCategories = require('./routes/admin_categories.js');
+var adminProducts = require('./routes/admin_products.js');
 
 app.use('/', pages);
 app.use('/admin/pages', adminPages);
 app.use('/admin/categories', adminCategories);
+app.use('/admin/products', adminProducts);
+
 
 
 
