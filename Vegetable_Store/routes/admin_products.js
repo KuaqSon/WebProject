@@ -301,6 +301,50 @@ router.get('/delete-page/:id', function (req, res) {
     });
 })
 
+/*
+ * GET delete gallery
+ */
+router.get('/delete-gallery/:image', function (req, res) {
+    var originalImage = 'public/product_images/' + req.query.id + '/gallery/' + req.params.image;
+    var thumbsImage = 'public/product_images/' + req.query.id + '/gallery/thumbs/' + req.params.image;
+
+    fs.remove(originalImage, function(err){
+        if(err){
+            console.log(err);
+        } else {
+            fs.remove(thumbsImage, function(err){
+                if(err)
+                console.log(err);
+                else{
+                    req.flash('success', 'Image edited!');
+                    res.redirect('/admin/products/edit-product/' + req.params.id);
+                }
+            });
+        }
+    });
+})
+
+/*
+ * GET delete page
+ */
+router.get('/delete-product/:id', function (req, res) {
+    var id = req.params.id;
+    var path = 'public/product_images/' + id;
+
+    fs.remove(path, function(err){
+        if(err){
+            console.log(err);
+        }   else {
+            Product.findByIdAndRemove(id, function(err){
+                console.log(err);
+            });
+            req.flash('success', 'Product deleted');
+            res.redirect('/admin/products');
+        }
+    });
+
+  
+})
 
 
 
