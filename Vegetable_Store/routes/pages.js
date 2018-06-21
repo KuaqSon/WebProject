@@ -1,22 +1,64 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/',function(req, res){
-    res.render('index',{
-        title:'Home'
+
+// Get Page model
+var Page = require('../models/page');
+
+/*
+ * GET /
+ */
+router.get('/', function (req, res) {
+
+    Page.findOne({
+        slug: 'home-page'
+    }, function (err, page) {
+        if (err)
+            console.log(err);
+
+        if (!page) {
+            res.redirect('/');
+        } else {
+            res.render('index', {
+                title: page.title,
+                content: page.content
+            });
+        }
+        // res.send(page);
+
     });
+
 });
 
 /*
- * post reoder 
+ * GET a page
  */
-router.get('/reorder-pages', function(req, res){
-    Page.find({}).sort({sorting: 1}).exec(function(err, pages) {
-        res.render('admin/pages', {
-            pages: pages
-        });
+router.get('/:slug', function (req, res) {
+
+    var slug = req.params.slug;
+
+    Page.findOne({
+        slug: slug
+    }, function (err, page) {
+        if (err)
+            console.log(err);
+
+        if (!page) {
+            res.redirect('/');
+        } else {
+            res.render('index', {
+                title: page.title,
+                content: page.content
+            });
+        }
     });
+
+
 });
+
+
+
+
 
 
 module.exports = router;

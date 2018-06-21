@@ -75,6 +75,15 @@ router.post('/add-page', function (req, res) {
                 page.save(function (err) {
                     if (err)
                         return console.log(err);
+                    Page.find({}).sort({
+                        sorting: 1
+                    }).exec(function (err, pages) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            req.app.locals.pages = pages;
+                        }
+                    });
                     req.flash('success', 'Page added!');
                     res.redirect('/admin/pages');
                 });
@@ -84,14 +93,10 @@ router.post('/add-page', function (req, res) {
 
 
 });
+// Sort pages
 
-// post reoder pages
-router.post('/reorder-pages', function (req, res) {
-    console.log(req.body);
-    var ids = req.body['id[]'];
+function sortPages(ids, callback) {
     var count = Number(0);
-
-
     for (var i = 0; i < ids.length; i++) {
         var id = ids[i];
         count++;
@@ -103,10 +108,32 @@ router.post('/reorder-pages', function (req, res) {
                 page.save(function (err) {
                     if (err)
                         return console.log(err);
+                    ++count;
+                    if (count >= ids.length) {
+                        callback();
+                    }
                 });
             });
         })(count);
     }
+}
+
+// post reoder pages
+router.post('/reorder-pages', function (req, res) {
+    // console.log(req.body);
+    var ids = req.body['id[]'];
+    sortPages(ids, function () {
+        Page.find({}).sort({
+            sorting: 1
+        }).exec(function (err, pages) {
+            if (err) {
+                console.log(err);
+            } else {
+                req.app.locals.pages = pages;
+            }
+        });
+    });
+
 });
 
 
@@ -115,19 +142,19 @@ router.post('/reorder-pages', function (req, res) {
  */
 router.get('/edit-page/:id', function (req, res) {
     Page.findById(
-        req.params.id
-    , function (err, page) {
-        if (err)
-            return console.log(err);
+        req.params.id,
+        function (err, page) {
+            if (err)
+                return console.log(err);
 
 
-        res.render('admin/edit_page', {
-            title: page.title,
-            slug: page.slug,
-            content: page.content,
-            id: page._id
+            res.render('admin/edit_page', {
+                title: page.title,
+                slug: page.slug,
+                content: page.content,
+                id: page._id
+            });
         });
-    });
 })
 
 
@@ -181,6 +208,15 @@ router.post('/edit-page/:id', function (req, res) {
                     page.save(function (err) {
                         if (err)
                             return console.log(err);
+                        Page.find({}).sort({
+                            sorting: 1
+                        }).exec(function (err, pages) {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                req.app.locals.pages = pages;
+                            }
+                        });
                         req.flash('success', 'Page edited!');
                         res.redirect('/admin/pages/edit-page/' + id);
                     });
@@ -200,6 +236,15 @@ router.post('/edit-page/:id', function (req, res) {
 router.get('/delete-page/:id', function (req, res) {
     Page.findByIdAndRemove(req.params.id, function (err) {
         if (err) return console.log(err);
+        Page.find({}).sort({
+            sorting: 1
+        }).exec(function (err, pages) {
+            if (err) {
+                console.log(err);
+            } else {
+                req.app.locals.pages = pages;
+            }
+        });
         req.flash('success', 'Page deleted!');
         res.redirect('/admin/pages/');
     });
