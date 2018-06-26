@@ -13,8 +13,10 @@
         <label>Password</label>
         <input type="password" name="password" class="form-control"  placeholder="Password">
     </div>
-
     <button type="submit" class="btn btn-default">Log in</button>
+</form>
+<form method="GET" action="/users/auth/google">
+    <button class="btn btn-default">Log in with facebook</button>
 </form>
 
 <% include _layouts/footer %>

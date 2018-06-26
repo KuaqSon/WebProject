@@ -1,7 +1,19 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+var GoogleStrategy = require('passport-google-oauth20');
 var bcrypt = require('bcryptjs');
+
+passport.use(
+    new GoogleStrategy({
+        //option for the google start
+        clientID:'404345609604-4j9t6b485u46gpprqjtqgot1583c1hsr.apps.googleusercontent.com',
+        clientSecret:'IlpJDvBeWLpPbUmE9wrS9rDF',
+        callbackURL:'http://localhost:3000/auth/google/redirect'
+    },()=>{
+        //callback google auth
+    })
+)
 
 // Get Users model
 var User = require('../models/user');
@@ -107,6 +119,16 @@ router.post('/login', function (req, res, next) {
     })(req, res, next);
     
 });
+
+router.get('/auth/google',passport.authenticate('google',{
+    scope:['profile']
+}));
+
+router.get('/users/auth/google/redirect',passport.authenticate('google',{
+    successRedirect:'/',
+    failureRedirect:'/users/login',
+    failureFlash:true
+}));
 
 /*
  * GET logout
