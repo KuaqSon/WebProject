@@ -52,7 +52,7 @@
 
         <ul class="nav navbar-nav navbar-right">
           <li>
-              <a href="/cart/checkout">My Cart (
+              <a href="/cart/checkout">Giỏ hàng (
                   <% if (typeof cart !== "undefined") { %>
                   <%= cart.length %>
                   <% } else {%>
@@ -64,13 +64,13 @@
 
 
           <% if (user) { %>
-            <li><a href="/users/logout">Hi, <%= user.username %> ( Logout )</a></li>
+            <li><a href="/users/logout">Hi, <%= user.username %> ( Đăng xuất )</a></li>
             <% } else { %>
-            <li><a href="/users/register">Register</a></li>
-            <li><a href="/users/login">Log in</a></li>
+            <li><a href="/users/register">Đăng kí</a></li>
+            <li><a href="/users/login">Đăng nhập</a></li>
             <% } %>
             <% if (user && user.admin == 1) { %>
-              <li><a href="/admin/pages">Admin Area</a></li>
+              <li><a href="/admin/pages">Khu vực quản lý</a></li>
             <% }%>
           
       </ul>
@@ -92,10 +92,10 @@
     <% } %>
       <div class="row">
         <div class="col-xs-12 col-md-3">
-          <h3>Categories</h3>
+          <h3>Loại sản phẩm</h3>
           <ul class="list-group">
             <li class="list-group-item">
-              <a href="/products">All products</a>
+              <a href="/products">Tất cả sản phẩm</a>
             </li>
             <% categories.forEach(function(c){ %>
               <li class="list-group-item">

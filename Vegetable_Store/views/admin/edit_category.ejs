@@ -1,13 +1,13 @@
 <%- include ../_layouts/adminHeader %>
 
-    <h2 class="page-title">Edit category</h2>
-    <a href="/admin/categories" class="btn btn-primary">Back to all categories</a>
+    <h2 class="page-title">Chỉnh sửa loại sản phẩm</h2>
+    <a href="/admin/categories" class="btn btn-primary">Quay lại danh sách loại sản phẩm</a>
 
     <form method="POST" action="/admin/categories/edit-category/<%= id %>">
 
         <div class="form-group">
-            <label for="">Title</label>
-            <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">
+            <label for="">Loại sản phẩm</label>
+            <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Tên loại">
         </div>
        
 

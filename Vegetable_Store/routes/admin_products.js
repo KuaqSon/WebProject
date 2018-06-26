@@ -27,7 +27,7 @@ router.get('/',isAdmin, function (req, res) {
             count: count
         });
     });
-    console.log(count);
+    // console.log(count);
     
 });
 
