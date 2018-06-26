@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 img.pimage {
     width: 150px;
     height: 150px;
@@ -44,4 +45,8 @@ table.alignmiddle td{
     color: #a94442;
     background-color: #f2dede;
     border-color: #ebccd1;
+=======
+#imgPreview{
+    margin: 20px
+>>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
 }

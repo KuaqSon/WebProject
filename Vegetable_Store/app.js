@@ -6,7 +6,12 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var expressValidator = require('express-validator');
 var fileUpload = require('express-fileupload');
+<<<<<<< HEAD
 var passport = require('passport');
+=======
+
+
+>>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
 
 mongoose.connect(config.database);
 
@@ -29,6 +34,7 @@ app.locals.errors = null;
 // Express fileUpload middleware
 app.use(fileUpload());
 
+<<<<<<< HEAD
 // Get page model
 var Page = require('./models/page')
 
@@ -57,6 +63,9 @@ Category.find(function (err, categories) {
 
 
 
+=======
+// Body parser
+>>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
@@ -94,7 +103,11 @@ app.use(expressValidator({
         };
     },
     customValidators: {
+<<<<<<< HEAD
         isImage: function (value, filename) {
+=======
+        isImage: function(value, filename){
+>>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
             var extension = (path.extname(filename)).toLowerCase();
             switch (extension) {
                 case '.jpg':
@@ -159,7 +172,10 @@ app.use('/cart', cart);
 app.use('/admin/pages', adminPages);
 app.use('/admin/categories', adminCategories);
 app.use('/admin/products', adminProducts);
+<<<<<<< HEAD
 app.use('/', pages);
+=======
+>>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
 
 
 

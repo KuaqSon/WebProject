@@ -2,8 +2,11 @@ var express = require('express');
 var mkdirp = require('mkdirp');
 var fs = require('fs-extra');
 var resizeImg = require('resize-img');
+<<<<<<< HEAD
 var auth = require('../config/auth');
 var isAdmin = auth.isAdmin;
+=======
+>>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
 
 var router = express.Router();
 // Get product model
@@ -15,7 +18,11 @@ var Category = require('../models/category');
 /*
  * GET product index
  */
+<<<<<<< HEAD
 router.get('/',isAdmin, function (req, res) {
+=======
+router.get('/', function (req, res) {
+>>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
     var count = 0;
 
     Product.count(function (err, c) {
@@ -27,14 +34,22 @@ router.get('/',isAdmin, function (req, res) {
             count: count
         });
     });
+<<<<<<< HEAD
     // console.log(count);
+=======
+    console.log(count);
+>>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
     
 });
 
 /*
  * GET add product
  */
+<<<<<<< HEAD
 router.get('/add-product', isAdmin,function (req, res) {
+=======
+router.get('/add-product', function (req, res) {
+>>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
     var title = "";
     var desc = "";
     var price = "";
@@ -144,7 +159,11 @@ router.post('/add-product', function (req, res) {
 /*
  * GET edit product
  */
+<<<<<<< HEAD
 router.get('/edit-product/:id',isAdmin, function (req, res) {
+=======
+router.get('/edit-product/:id', function (req, res) {
+>>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
 
     var errors;
 
@@ -158,13 +177,20 @@ router.get('/edit-product/:id',isAdmin, function (req, res) {
                 console.log(err);
                 res.redirect('/admin/products');
             } else {
+<<<<<<< HEAD
                 var galleryDir = 'Vegetable_Store/public/product_images/' + p._id + '/gallery';
+=======
+                var galleryDir = 'public/product_images/' + p._id + '/gallery';
+>>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
                 var galleryImages = null;
 
                 fs.readdir(galleryDir, function (err, files) {
                     if (err) {
                         console.log(err);
+<<<<<<< HEAD
                         res.send(err);
+=======
+>>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
                     } else {
                         galleryImages = files;
                         res.render('admin/edit_product', {
@@ -247,7 +273,11 @@ router.post('/edit-product/:id', function (req, res) {
 
                         if (imageFile != "") {
                             if (pimage != "") {
+<<<<<<< HEAD
                                 fs.remove('Vegetable_Store/public/product_images/' + id + '/' + pimage, function (err) {
+=======
+                                fs.remove('public/product_images/' + id + '/' + pimage, function (err) {
+>>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
                                     if (err)
                                         console.log(err);
                                 });
@@ -277,8 +307,13 @@ router.post('/edit-product/:id', function (req, res) {
 router.post('/product-gallery/:id', function (req, res) {
     var productImage = req.files.file;
     var id = req.params.id;
+<<<<<<< HEAD
     var path = 'Vegetable_Store/public/product_images/' + id + '/gallery/' + req.files.file.name;
     var thumbsPath = 'Vegetable_Store/public/product_images/' + id + '/gallery/thumbs/' + req.files.file.name;
+=======
+    var path = 'public/product_images/' + id + '/gallery/' + req.files.file.name;
+    var thumbsPath = 'public/product_images/' + id + '/gallery/thumbs/' + req.files.file.name;
+>>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
     productImage.mv(path, function (err) {
         if (err)
              console.log(err);
@@ -294,11 +329,30 @@ router.post('/product-gallery/:id', function (req, res) {
 
 
 /*
+<<<<<<< HEAD
  * GET delete gallery
  */
 router.get('/delete-image/:image',isAdmin, function (req, res) {
     var originalImage = 'Vegetable_Store/public/product_images/' + req.query.id + '/gallery/' + req.params.image;
     var thumbsImage = 'Vegetable_Store/public/product_images/' + req.query.id + '/gallery/thumbs/' + req.params.image;
+=======
+ * GET delete page
+ */
+router.get('/delete-page/:id', function (req, res) {
+    Page.findByIdAndRemove(req.params.id, function (err) {
+        if (err) return console.log(err);
+        req.flash('success', 'Page deleted!');
+        res.redirect('/admin/pages/');
+    });
+})
+
+/*
+ * GET delete gallery
+ */
+router.get('/delete-gallery/:image', function (req, res) {
+    var originalImage = 'public/product_images/' + req.query.id + '/gallery/' + req.params.image;
+    var thumbsImage = 'public/product_images/' + req.query.id + '/gallery/thumbs/' + req.params.image;
+>>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
 
     fs.remove(originalImage, function(err){
         if(err){
@@ -319,7 +373,11 @@ router.get('/delete-image/:image',isAdmin, function (req, res) {
 /*
  * GET delete page
  */
+<<<<<<< HEAD
 router.get('/delete-product/:id',isAdmin, function (req, res) {
+=======
+router.get('/delete-product/:id', function (req, res) {
+>>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
     var id = req.params.id;
     var path = 'public/product_images/' + id;
 
@@ -338,6 +396,7 @@ router.get('/delete-product/:id',isAdmin, function (req, res) {
   
 })
 
+<<<<<<< HEAD
 /*
  * GET delete page
  */
@@ -350,6 +409,8 @@ router.get('/delete-page/:id',isAdmin, function (req, res) {
 })
 
 
+=======
+>>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
 
 
 
