@@ -60,7 +60,18 @@
                   <% } %>
               )</a>
           </li>
-         
+
+
+
+          <% if (user) { %>
+            <li><a href="/users/logout">Hi, <%= user.username %> ( Logout )</a></li>
+            <% } else { %>
+            <li><a href="/users/register">Register</a></li>
+            <li><a href="/users/login">Log in</a></li>
+            <% } %>
+            <% if (user && user.admin == 1) { %>
+              <li><a href="/admin/pages">Admin Area</a></li>
+            <% }%>
           
       </ul>
 
@@ -69,23 +80,16 @@
     </div>
   </nav>
 
-  <!--  <div class="container">-->
-
-
-  <!-- </div>< /.container -->
-
-
-
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>   -->
-
-  <!--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>    -->
-
-  <!-- </body>   -->
-  <!--</html> -->
 
   <div class="container">
     <%- messages('messages', locals) %>
-
+    <% if (errors) {%>
+      <% errors.forEach(function(error)  { %>
+        <div class="alert-danger">
+          <%= error.msg %>
+        </div>
+      <% });%>
+    <% } %>
       <div class="row">
         <div class="col-xs-12 col-md-3">
           <h3>Categories</h3>
@@ -93,19 +97,14 @@
             <li class="list-group-item">
               <a href="/products">All products</a>
             </li>
-
             <% categories.forEach(function(c){ %>
-
               <li class="list-group-item">
                 <a href="/products/<%= c.slug %>">
                   <%= c.title %>
                 </a>
               </li>
-
               <% }); %>
-
-
           </ul>
         </div>
-        <div class="col-xs-12"></div>
+        <div class="col-xs-12 col-md-1"></div>
         <div class="col-xs-12 col-md-8">

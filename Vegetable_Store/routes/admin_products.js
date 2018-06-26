@@ -2,6 +2,8 @@ var express = require('express');
 var mkdirp = require('mkdirp');
 var fs = require('fs-extra');
 var resizeImg = require('resize-img');
+var auth = require('../config/auth');
+var isAdmin = auth.isAdmin;
 
 var router = express.Router();
 // Get product model
@@ -13,7 +15,7 @@ var Category = require('../models/category');
 /*
  * GET product index
  */
-router.get('/', function (req, res) {
+router.get('/',isAdmin, function (req, res) {
     var count = 0;
 
     Product.count(function (err, c) {
@@ -32,7 +34,7 @@ router.get('/', function (req, res) {
 /*
  * GET add product
  */
-router.get('/add-product', function (req, res) {
+router.get('/add-product', isAdmin,function (req, res) {
     var title = "";
     var desc = "";
     var price = "";
@@ -142,7 +144,7 @@ router.post('/add-product', function (req, res) {
 /*
  * GET edit product
  */
-router.get('/edit-product/:id', function (req, res) {
+router.get('/edit-product/:id',isAdmin, function (req, res) {
 
     var errors;
 
@@ -294,7 +296,7 @@ router.post('/product-gallery/:id', function (req, res) {
 /*
  * GET delete gallery
  */
-router.get('/delete-image/:image', function (req, res) {
+router.get('/delete-image/:image',isAdmin, function (req, res) {
     var originalImage = 'Vegetable_Store/public/product_images/' + req.query.id + '/gallery/' + req.params.image;
     var thumbsImage = 'Vegetable_Store/public/product_images/' + req.query.id + '/gallery/thumbs/' + req.params.image;
 
@@ -317,7 +319,7 @@ router.get('/delete-image/:image', function (req, res) {
 /*
  * GET delete page
  */
-router.get('/delete-product/:id', function (req, res) {
+router.get('/delete-product/:id',isAdmin, function (req, res) {
     var id = req.params.id;
     var path = 'public/product_images/' + id;
 
@@ -339,7 +341,7 @@ router.get('/delete-product/:id', function (req, res) {
 /*
  * GET delete page
  */
-router.get('/delete-page/:id', function (req, res) {
+router.get('/delete-page/:id',isAdmin, function (req, res) {
     Page.findByIdAndRemove(req.params.id, function (err) {
         if (err) return console.log(err);
         req.flash('success', 'Page deleted!');

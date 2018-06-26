@@ -1,11 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var Page = require('../models/page');
+var auth = require('../config/auth');
+var isAdmin = auth.isAdmin;
 
 /*
  * GET page index
  */
-router.get('/', function (req, res) {
+router.get('/',isAdmin, function (req, res) {
     Page.find({}).sort({
         sorting: 1
     }).exec(function (err, pages) {
@@ -18,7 +20,7 @@ router.get('/', function (req, res) {
 /*
  * GET add page
  */
-router.get('/add-page', function (req, res) {
+router.get('/add-page',isAdmin, function (req, res) {
     var title = "";
     var slug = "";
     var content = "";
@@ -140,7 +142,7 @@ router.post('/reorder-pages', function (req, res) {
 /*
  * GET edit page
  */
-router.get('/edit-page/:id', function (req, res) {
+router.get('/edit-page/:id',isAdmin, function (req, res) {
     Page.findById(
         req.params.id,
         function (err, page) {
@@ -233,7 +235,7 @@ router.post('/edit-page/:id', function (req, res) {
 /*
  * GET delete page
  */
-router.get('/delete-page/:id', function (req, res) {
+router.get('/delete-page/:id',isAdmin, function (req, res) {
     Page.findByIdAndRemove(req.params.id, function (err) {
         if (err) return console.log(err);
         Page.find({}).sort({
