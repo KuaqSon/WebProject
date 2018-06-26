@@ -17,12 +17,12 @@
                 <%= parseFloat(p.price).toFixed(2) %> VND </p>
                 <% if(loggedIn) { %>
                     <p>
-                        <a href="/cart/add/<%= p.slug %>">Thêm vào giỏ hàng</a>
+                        <a href="/cart/add/<%= p.slug %>">Add to cart</a>
                     </p>
 
                     <% } else {%>
                         <p>
-                            Để mua sản phẩm, xin đăng nhập
+                            You much be logged in to purchase items.
                         </p>
                     <% } %>
 

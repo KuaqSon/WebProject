@@ -35,10 +35,14 @@ router.get('/', function (req, res) {
         });
     });
 <<<<<<< HEAD
+<<<<<<< HEAD
     // console.log(count);
 =======
     console.log(count);
 >>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
+=======
+    console.log(count);
+>>>>>>> parent of 97147b3... VN
     
 });
 

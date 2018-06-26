@@ -1,17 +1,17 @@
 <% include _layouts/header %>
 
-    <h1 class="page-title">Giỏ hàng</h1>
+    <h1 class="page-title">My cart</h1>
     <br>
     <br>
     <% if(typeof cart !=="undefined") { %>
         <table class="table table-striped alignmiddle">
             <tr>
-                <th>Ảnh</th>
-                <th>Tên sản phẩm</th>
-                <th>Giá</th>
-                <th>Số lượng</th>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Quantity</th>
                 <th></th>
-                <th>Tổng</th>
+                <th>Subtotal</th>
 
             </tr>
             <%var total = 0 %>
@@ -50,7 +50,7 @@
                                         <a class="clearcart btn btn-danger" href="/cart/clear">Clear cart</a>
                                     </td>
                                     <td colspan="5" align="right">
-                                        <a class="btn btn-primary buynow" href="#">Đặt mua</a>
+                                        <a class="btn btn-primary buynow" href="#">Buy now</a>
                                     </td>
 
                                 </tr>
@@ -76,7 +76,7 @@
 
 
         <% }else { %>
-            <h3 class="text-center">Giỏ hàng của bạn trống. </h3>
+            <h3 class="text-center">Your cart is empty. </h3>
             <%}%>
                 <script>
                     $(function () {

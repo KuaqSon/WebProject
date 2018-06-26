@@ -7,9 +7,9 @@ var bcrypt = require('bcryptjs');
 passport.use(
     new GoogleStrategy({
         //option for the google start
-        clientID:'404345609604-4j9t6b485u46gpprqjtqgot1583c1hsr.apps.googleusercontent.com',
-        clientSecret:'IlpJDvBeWLpPbUmE9wrS9rDF',
-        callbackURL:'http://localhost:3000/auth/google/redirect'
+        clientID:'33554976433-0jq14i9ct8uphp7dfi0l8hhpc7d8mqks.apps.googleusercontent.com',
+        clientSecret:'ol1a_iu5LH5KanPh7yEnLRYB',
+        callbackURL:'http://localhost:3000/users/auth/google/redirect'
     },()=>{
         //callback google auth
     })
