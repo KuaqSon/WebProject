@@ -12,11 +12,8 @@
   </title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/style.css" />
-<<<<<<< HEAD
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-=======
->>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
 
 </head>
 
@@ -32,7 +29,6 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-<<<<<<< HEAD
         <a class="navbar-brand" href="/">Vegetable Store</a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
@@ -53,30 +49,10 @@
                 <% } %>
                   <% }); %>
         </ul>
-=======
-        <a class="navbar-brand" href="#">Project name</a>
-      </div>
-      <div id="navbar" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li class="active">
-            <a href="#">Home</a>
-          </li>
-          <li>
-            <a href="#about">About</a>
-          </li>
-          <li>
-            <a href="#contact">Contact</a>
-          </li>
-        </ul>
-      </div>
-      <!--/.nav-collapse -->
-    </div>
-  </nav>
->>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
 
         <ul class="nav navbar-nav navbar-right">
           <li>
-              <a href="/cart/checkout">My Cart (
+              <a href="/cart/checkout">Giỏ hàng (
                   <% if (typeof cart !== "undefined") { %>
                   <%= cart.length %>
                   <% } else {%>
@@ -85,35 +61,25 @@
               )</a>
           </li>
 
-<<<<<<< HEAD
 
 
           <% if (user) { %>
-            <li><a href="/users/logout">Hi, <%= user.username %> ( Logout )</a></li>
+            <li><a href="/users/logout">Hi, <%= user.name %> ( Đăng xuất )</a></li>
             <% } else { %>
-            <li><a href="/users/register">Register</a></li>
-            <li><a href="/users/login">Log in</a></li>
+            <li><a href="/users/register">Đăng ký</a></li>
+            <li><a href="/users/login">Đăng nhập</a></li>
             <% } %>
             <% if (user && user.admin == 1) { %>
-              <li><a href="/admin/pages">Admin Area</a></li>
+              <li><a href="/admin/pages">Khu vực Admin</a></li>
             <% }%>
           
       </ul>
-=======
-
-  <!-- </div>< /.container -->
-
-
-
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>   -->
->>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
 
       </div>
       <!--/.nav-collapse -->
     </div>
   </nav>
 
-<<<<<<< HEAD
 
   <div class="container">
     <%- messages('messages', locals) %>
@@ -126,10 +92,10 @@
     <% } %>
       <div class="row">
         <div class="col-xs-12 col-md-3">
-          <h3>Categories</h3>
+          <h3>Thể loại rau</h3>
           <ul class="list-group">
             <li class="list-group-item">
-              <a href="/products">All products</a>
+              <a href="/products">Tất cả</a>
             </li>
             <% categories.forEach(function(c){ %>
               <li class="list-group-item">
@@ -142,10 +108,3 @@
         </div>
         <div class="col-xs-12 col-md-1"></div>
         <div class="col-xs-12 col-md-8">
-=======
-  <!-- </body>   -->
-  <!--</html> -->
-
-  <div class="container">
-    <%- messages('messages', locals) %>
->>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4

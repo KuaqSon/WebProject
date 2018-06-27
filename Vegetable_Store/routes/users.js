@@ -4,14 +4,37 @@ var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth20');
 var bcrypt = require('bcryptjs');
 
+passport.serializeUser((user,done)=>{
+    done(null,user.ID);
+})
+
+passport.deserializeUser((id,done)=>{
+    User.findById(id).then((user)=>{
+        done(null,user);
+    })
+})
+
 passport.use(
     new GoogleStrategy({
         //option for the google start
         clientID:'33554976433-0jq14i9ct8uphp7dfi0l8hhpc7d8mqks.apps.googleusercontent.com',
         clientSecret:'ol1a_iu5LH5KanPh7yEnLRYB',
         callbackURL:'http://localhost:3000/users/auth/google/redirect'
-    },()=>{
+    },(accessToken, refreshToken, profile, done)=>{
         //callback google auth
+        User.findOne({ID:profile.id}).then((currentUser)=>{
+            if(currentUser){
+                done(null,currentUser);
+            }else{
+                new User({
+                    ID:profile.id,
+                    name:profile.displayName,
+                    admin:0
+                }).save().then((newUser)=>{
+                    done(null,newUser);
+                })
+            }
+        })
     })
 )
 
@@ -124,7 +147,7 @@ router.get('/auth/google',passport.authenticate('google',{
     scope:['profile']
 }));
 
-router.get('/users/auth/google/redirect',passport.authenticate('google',{
+router.get('/auth/google/redirect',passport.authenticate('google',{
     successRedirect:'/',
     failureRedirect:'/users/login',
     failureFlash:true

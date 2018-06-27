@@ -1,62 +1,22 @@
 <%- include ../_layouts/adminHeader %>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <h2 class="page-title">Chỉnh sửa sản phẩm</h2>
-    <a href="/admin/products" class="btn btn-primary">Quay lại danh sách sản phẩm</a>
-=======
-    <h2 class="page-title">Edit product</h2>
-    <a href="/admin/products" class="btn btn-primary">Back to all products</a>
->>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
-=======
-    <h2 class="page-title">Edit product</h2>
-    <a href="/admin/products" class="btn btn-primary">Back to all products</a>
->>>>>>> parent of 97147b3... VN
-
+    <h2 class="page-title">Chỉnh sửa mặt hàng</h2>
+    <a href="/admin/products" class="btn btn-primary">Quay lại danh sách mặt hàng</a>
     <form method="POST" action="/admin/products/edit-product/<%= id %>" enctype="multipart/form-data">
-
         <div class="form-group">
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <label for="">Tên sản phẩm</label>
-            <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Tên sản phẩm">
+            <label for="">Tên rau</label>
+            <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Tên rau">
         </div>
 
         <div class="form-group">
             <label for="">Mô tả</label>
             <textarea class="form-control" name="desc" cols="30" rows="10" placeholder="Mô tả">
-=======
-            <label for="">Title</label>
-            <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">
-        </div>
-
-        <div class="form-group">
-            <label for="">Description</label>
-            <textarea class="form-control" name="desc" cols="30" rows="10" placeholder="Description">
->>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
-=======
-            <label for="">Title</label>
-            <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">
-        </div>
-
-        <div class="form-group">
-            <label for="">Description</label>
-            <textarea class="form-control" name="desc" cols="30" rows="10" placeholder="Description">
->>>>>>> parent of 97147b3... VN
                 <%= desc %>
             </textarea>
         </div>
 
         <div class="form-group">
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <label for="">Loại sản phẩm</label>
-=======
-            <label for="">Category</label>
->>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
-=======
-            <label for="">Category</label>
->>>>>>> parent of 97147b3... VN
+            <label for="">Loại rau</label>
             <select name="category" class="form-control">
                 <% categories.forEach(function(cat){ %>
                     <option value="<%= cat.slug %>" 
@@ -71,30 +31,12 @@
         </div>
 
         <div class="form-group">
-<<<<<<< HEAD
-<<<<<<< HEAD
             <label for="">Giá tiền</label>
             <input type="text" class="form-control" name="price" value="<%= price %>" placeholder="Giá tiền">
         </div>
 
         <div class="form-group">
             <label for="">Ảnh hiện hành</label>
-=======
-            <label for="">Price</label>
-            <input type="text" class="form-control" name="price" value="<%= price %>" placeholder="Price">
-        </div>
-
-        <div class="form-group">
-            <label for="">Current image</label>
->>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
-=======
-            <label for="">Price</label>
-            <input type="text" class="form-control" name="price" value="<%= price %>" placeholder="Price">
-        </div>
-
-        <div class="form-group">
-            <label for="">Current image</label>
->>>>>>> parent of 97147b3... VN
             <p>
             <% if (image == "") { %>
                 <img id="noimage" src="/images/noimage.jpg" alt="">
@@ -105,15 +47,7 @@
         </div>
 
         <div class="form-group">
-<<<<<<< HEAD
-<<<<<<< HEAD
             <label for="">Tải ảnh lên</label>
-=======
-            <label for="">Upload image</label>
->>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
-=======
-            <label for="">Upload image</label>
->>>>>>> parent of 97147b3... VN
             <input type="file" class="form-control" name="image" id="img">
             <img src="#" id="imgPreview" alt="">
         </div>
@@ -129,11 +63,7 @@
             <% if (image != "thumbs") { %>
                 <li>
                     <img src="/product_images/<%= id %>/gallery/thumbs/<%= image %>" alt="">&nbsp;
-<<<<<<< HEAD
-                    <a class="confirmDeletion" href="/admin/products/delete-image/<%= image %>? id = <%= id %>">delete</a>
-=======
-                    <a class="confirmDeletion" href="admin/products/delete-image/<%= image %>? id = <%= id %>">delete</a>
->>>>>>> 92f27412605fe953faa731fdeeb93fd817e54ee4
+                    <a class="confirmDeletion" href="/admin/products/delete-image/<%= image %>? id = <%= id %>">Xóa</a>
                 </li>
                 <% } %>
         <%  }); %>

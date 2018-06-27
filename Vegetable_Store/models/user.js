@@ -9,20 +9,23 @@ var UserSchema = mongoose.Schema({
     },
     email: {
         type: String,
-        required: true
+        required: false
     },
     username: {
         type: String,
-        required: true
+        required: false
     },
     password: {
         type: String,
-        required: true
+        required: false
     },
     admin: {
         type: Number
-    }
-    
+    },
+    ID:{
+        type:String,
+        require:false
+    } 
 });
 
 var User = module.exports = mongoose.model('User', UserSchema);
