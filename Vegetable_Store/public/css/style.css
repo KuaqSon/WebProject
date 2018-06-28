@@ -1,13 +1,14 @@
 img.pimage {
-    width: 150px;
-    height: 150px;
-    display: inline-block;
-
+    width: 220px;
+    height: 220px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 a.pa {
     display: inline-block;
-    height: 160px;
+    /* height: 160px; */
 }
 
 .row.products .p {
@@ -15,6 +16,9 @@ a.pa {
     margin-bottom: 20px;
 }
 
+.card:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 img.spi {
     width: 100%;
 }
