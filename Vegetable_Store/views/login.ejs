@@ -1,25 +1,28 @@
-<% include layouts/header %>
+<% include layouts/header3 %>
 
-<h1><%= title %></h1>
-
-<form method="post" action="/users/login">
+<div class="form-sign">
+    <!-- <h1><%= title %></h1> -->
+    <h1>Đăng nhập</h1>
+    <br>
+    <form method="post" action="/users/login">
+        
+        <div class="form-group">
+            <label>Tên đăng nhập</label>
+            <input type="text" name="username" class="form-control" placeholder="Tên đăng nhập">
+        </div>
     
-    <div class="form-group">
-        <label>Username</label>
-        <input type="text" name="username" class="form-control" placeholder="Username">
-    </div>
+        <div class="form-group">
+            <label>Mật khẩu</label>
+            <input type="password" name="password" class="form-control"  placeholder="Mật khẩu">
+        </div>
+        <button type="submit" class="btn btn-primary">Đăng nhập</button>
+    </form>
+    <br>
+    <br>
+    <br>
+    <form method="GET" action="/users/auth/google">
+        <button class="btn btn-light" style="color: rgb(243, 42, 7)">Đăng nhập với Gmail</button>
+    </form>
+</div>
 
-    <div class="form-group">
-        <label>Password</label>
-        <input type="password" name="password" class="form-control"  placeholder="Password">
-    </div>
-    <button type="submit" class="btn btn-default">Đăng nhập</button>
-</form>
-<br>
-<br>
-<br>
-<form method="GET" action="/users/auth/google">
-    <button class="btn btn-default">Đăng nhập với Gmail</button>
-</form>
-
-<% include layouts/footer %>
+<% include layouts/footer3 %>

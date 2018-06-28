@@ -1,8 +1,9 @@
-<% include layouts/header %>
+<% include layouts/header2 %>
 
     <h1 class="page-header">
         <%= p.title%>
     </h1>
+    <br>
     <div class="row">
         <div class="col-xs-12 col-md-5">
             <img class="spi" src="/productImages/<%= p.id%>/<%= p.image %>" alt="">
@@ -17,7 +18,8 @@
             </p>
                 <% if(loggedIn) { %>
                     <p>
-                        <a href="/cart/add/<%= p.slug %>">Thêm vào giỏ hàng</a>
+                            <form action="/cart/add/<%= p.slug %>"><input class="btn btn-success btn-sm" type="submit" value="Thêm vào giỏ hàng"></form>
+                        <!-- <a href="/cart/add/<%= p.slug %>">Thêm vào giỏ hàng</a> -->
                     </p>
 
                     <% } else {%>
@@ -47,4 +49,4 @@
         </div>
     </div>
 
-    <% include layouts/footer %>
+    <% include layouts/footer2 %>
