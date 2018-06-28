@@ -15,7 +15,7 @@ router.get('/', function (req, res) {
     Product.find(function (err, products) {
         if (err)
             console.log(err);
-        res.render('all_products', {
+        res.render('allProducts', {
             title: "All products",
             products: products
         });
@@ -40,7 +40,7 @@ router.get('/:category', function (req, res) {
         }, function (err, products) {
             if (err)
                 console.log(err);
-            res.render('cat_products', {
+            res.render('catProducts', {
                 title: c.title,
                 products: products
             });
@@ -67,7 +67,7 @@ router.get('/:category/:product', function (req, res) {
         if (err)
             console.log(err);
         else {
-            var galleryDir = 'public/product_images/' + product._id + '/gallery';
+            var galleryDir = 'public/productImages/' + product._id + '/gallery';
             fs.readdir(galleryDir, function (err, files) {
                 if (err)
                     console.log(err);
@@ -87,6 +87,23 @@ router.get('/:category/:product', function (req, res) {
 
 
 });
+
+router.get('/search',function(req,res){
+
+    res.render('search',{
+        title:"Tìm kiếm"
+    })
+})
+
+router.post('/search',function(req,res){
+    var thamso= req.body.search;        //search là name trong của search trong search.ejs
+    var valueCallBack=[];
+    Product.find(function(err,listProducts){
+        if(err) console.log(err);
+        valueCallBack = listProducts.filter(x => x.title.toUpperCase().includes(thamso.toUpperCase())==1);
+        res.render('dan-sach-san-pham-tim-duoc',{valueCallBack:valueCallBack})
+    })
+})
 
 
 

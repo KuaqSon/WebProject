@@ -152,9 +152,9 @@ var pages = require('./routes/pages.js');
 var products = require('./routes/products.js');
 var cart = require('./routes/cart.js');
 var users = require('./routes/users.js');
-var adminPages = require('./routes/admin_pages.js');
-var adminCategories = require('./routes/admin_categories.js');
-var adminProducts = require('./routes/admin_products.js');
+var adminPages = require('./routes/adminPages.js');
+var adminCategories = require('./routes/adminCategories.js');
+var adminProducts = require('./routes/adminProducts.js');
 
 app.use('/products', products);
 app.use('/users', users);
@@ -164,10 +164,23 @@ app.use('/admin/categories', adminCategories);
 app.use('/admin/products', adminProducts);
 app.use('/', pages);
 
+function normalizePort(val) {
+    var port = parseInt(val, 10);
+  
+    if (isNaN(port)) {
+      // named pipe
+      return val;
+    }
+  
+    if (port >= 0) {
+      // port number
+      return port;
+    }
+  
+    return false;
+  }
 
-
-
-var port = 3000;
+var port = normalizePort(process.env.PORT || '3000');
 app.listen(port, function () {
     console.log('Sever started on port ' + port);
 });

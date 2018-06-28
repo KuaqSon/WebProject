@@ -1,4 +1,4 @@
-<% include _layouts/header %>
+<% include layouts/header %>
 
     <div class="row">
 
@@ -6,7 +6,7 @@
             <%= p.title%>
         </h1>
         <div class="col-xs-12 col-md-5">
-            <img class="spi" src="/product_images/<%= p.id%>/<%= p.image %>" alt="">
+            <img class="spi" src="/productImages/<%= p.id%>/<%= p.image %>" alt="">
             <br>
         </div>
         <div class="col-xs-12 col-md-7">
@@ -35,8 +35,8 @@
 
                     <% if(image !="thumbs") { %>
                         <li>
-                            <a data-fancybox="gallery" href="/product_images/<%= p.id %>/gallery/<%= image%>">
-                                <img class="pimage" src="/product_images/<%= p.id %>/gallery/<%= image%>" alt="">
+                            <a data-fancybox="gallery" href="/productImages/<%= p.id %>/gallery/<%= image%>">
+                                <img class="pimage" src="/productImages/<%= p.id %>/gallery/<%= image%>" alt="">
                             </a>
                         </li>
                         <% } %>
@@ -47,4 +47,4 @@
         </div>
     </div>
 
-    <% include _layouts/footer %>
+    <% include layouts/footer %>

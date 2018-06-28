@@ -1,0 +1,21 @@
+<%- include ../layouts/adminHeader %>
+
+    <h2 class="page-title">Chỉnh sửa thông tin người dùng</h2>
+    <a href="/admin/pages" class="btn btn-primary">Quay lại danh sách người dùng</a>
+
+    <form method="POST" action="/admin/pages/edit-page/<%= id %>">
+
+        <div class="form-group">
+            <label for="">Tên người dùng</label>
+            <input type="text" class="form-control" name="name" value="<%= name %>" placeholder="name">
+        </div>
+        <div class="form-group">
+            <label for="">Username</label>
+            <input type="text" class="form-control" name="username" value="<%= username %>" placeholder="username">
+        </div>
+ 
+
+        <button class="btn btn-default">Sửa trang</button>
+    </form>
+
+    <%- include ../layouts/adminFooter %>

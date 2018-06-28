@@ -1,0 +1,49 @@
+<%- include('../layouts/adminheader') %>
+
+<h2 class="page-title">Users</h2>
+<a href="/admin/users/add-user" class="btn btn-primary">Thêm thành viên</a>
+<br><br>
+
+<table class="table table-striped sorting">
+
+    <thead>
+        <tr class="home">
+            <th>Tên</th>
+            <th>Username</th>
+            <th>Quyền Admin</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% users.forEach(function(user){ %>
+        <tr id="id_<%= user._id %>" class="<%= user.password %>">
+            <td><%= user.name %></td>
+            <td><a href="/admin/users/edit-user/<%= user._id %>">Sửa</a></td>
+            <% if (user.name == "Admin") { %>
+            <td></td>
+            <% }  else {%>
+            <td><a class="confirmDeletion" href="/admin/users/delete-user/<%= user._id %>">Xóa</a></td>
+            <% }%>
+        </tr>
+        <% }); %>
+    </tbody>
+</table>
+
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+<script>
+
+    $('tbody').sortable({
+
+        items: "tr:not('.home')",
+        placeholder: "ui-state-hightlight",
+        update: function () {
+            var ids = $('tbody').sortable("serialize");
+            var url = "/admin/pages/reorder-pages";
+            
+            $.post(url, ids);
+        }
+
+    });
+
+</script>
+
+<%- include('../layouts/adminfooter') %>

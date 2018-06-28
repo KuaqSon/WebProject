@@ -1,0 +1,17 @@
+<%- include ../layouts/adminHeader %>
+
+    <h2 class="page-title">Chỉnh sửa loại</h2>
+    <a href="/admin/categories" class="btn btn-primary">Quay lại danh sách loại rau</a>
+
+    <form method="POST" action="/admin/categories/edit-category/<%= id %>">
+
+        <div class="form-group">
+            <label for="">Loại rau</label>
+            <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Loại rau">
+        </div>
+       
+
+        <button class="btn btn-default">Sửa loại</button>
+    </form>
+
+    <%- include ../layouts/adminFooter %>

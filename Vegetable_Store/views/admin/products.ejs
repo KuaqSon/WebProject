@@ -1,4 +1,4 @@
-<%- include ../_layouts/adminheader %>
+<%- include ../layouts/adminheader %>
 
     <h2 class="page-title"> Danh sách mặt hàng</h2>
     <a href="/admin/products/add-product" class="btn btn-primary">Thêm mặt hàng</a>
@@ -23,8 +23,8 @@
                     <td>
                         <%= product.title %>
                     </td>
-                    <td> $
-                        <%= parseFloat(product.price).toFixed(2) %>
+                    <td> 
+                        <%= parseFloat(product.price).toFixed(2) %> VND
                     </td>
                     <td>
                         <%= product.category %>
@@ -33,7 +33,7 @@
                         <% if(product.image == ""){%>
                             <img id="noimage" src="/images/noimage.jpg" >
                         <% } else {%>
-                            <img id="noimage" src="/product_images/<%= product._id %>/<%= product.image %>" >
+                            <img id="noimage" src="/productImages/<%= product._id %>/<%= product.image %>" >
                         <% } %>
                         
                     </td>
@@ -67,4 +67,4 @@
         });
     </script> -->
 
-    <%- include ../_layouts/adminFooter %>
+    <%- include ../layouts/adminFooter %>

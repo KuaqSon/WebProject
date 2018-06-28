@@ -11,14 +11,6 @@ var CategorySchema = mongoose.Schema({
         type: String,
     },
 
-    content:{
-        type: String,
-        require:true
-    },
-
-    sorting:{
-        type: Number,
-    }
 });
 
 var Category = module.exports = mongoose.model('Category',CategorySchema);
