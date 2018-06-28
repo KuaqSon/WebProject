@@ -52,6 +52,7 @@ router.get('/register', function (req, res) {
 
 });
 
+
 /*
  * POST register
  */

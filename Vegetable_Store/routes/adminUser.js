@@ -4,15 +4,56 @@ var User = require('../models/user');
 var auth = require('../config/auth');
 var isAdmin = auth.isAdmin;
 
+
+
 /*
- * GET user index
+ * GET product index
  */
 router.get('/', isAdmin, function (req, res) {
-    res.render('admin/users', {
-        users: users
+    var count = 0;
+
+    users.count(function (err, c) {
+        count = c;
     });
+    Product.find(function (err, users) {
+        res.render('admin/users', {
+            users: users,
+            count: count
+        });
+    });
+
+
+
 });
 
+
+
+// /*
+//  * GET user index
+//  */
+// router.get('/', function (req, res) {
+
+//     res.render('users', {
+//         title: 'Users'
+//     });
+
+// });
+
+
+// router.post('/', function (req, res) {
+
+//     User.find(function (err, users) {
+//         if (err)
+//             console.log(err);
+//         res.render('allUser', {
+//             title: "All user",
+//             users: users
+//         });
+//         // res.send(page);
+
+//     });
+
+// });
 /*
  * GET add user
  */
