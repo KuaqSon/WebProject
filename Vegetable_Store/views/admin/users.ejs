@@ -11,12 +11,26 @@
             <th>Tên</th>
             <th>Username</th>
             <th>Quyền Admin</th>
+            <th>Sửa</th>
+            <th>Xóa</th>
+
         </tr>
     </thead>
     <tbody>
         <% users.forEach(function(user){ %>
         <tr id="id_<%= user._id %>" class="<%= user.password %>">
             <td><%= user.name %></td>
+            <% if( user.username  ) { %>
+            <td><%= user.username %></td>
+            <% } else { %>
+                <td> Đăng nhập bằng Gmail</td>
+                <% } %>
+                <% if( user.admin == 1 ) { %>
+                    <td>Có quyền Admin </td>
+                <% } else { %>
+                    <td> Không có quyền Admin </td>
+                <% } %>
+            
             <td><a href="/admin/users/edit-user/<%= user._id %>">Sửa</a></td>
             <% if (user.name == "Admin") { %>
             <td></td>

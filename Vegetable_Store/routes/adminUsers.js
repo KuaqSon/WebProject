@@ -3,57 +3,35 @@ var router = express.Router();
 var User = require('../models/user');
 var auth = require('../config/auth');
 var isAdmin = auth.isAdmin;
+var bcrypt = require('bcryptjs');
+var passport = require('passport');
+
+passport.serializeUser((user,done)=>{
+    done(null,user.ID);
+})
+
+passport.deserializeUser((id,done)=>{
+    User.findById(id).then((user)=>{
+        done(null,user);
+    })
+})
 
 
 
 /*
- * GET product index
+ * GET user index
  */
-router.get('/', isAdmin, function (req, res) {
-    var count = 0;
+router.get('/', function (req, res) {
 
-    users.count(function (err, c) {
-        count = c;
-    });
-    Product.find(function (err, users) {
+    User.find(function (err, users) {
         res.render('admin/users', {
             users: users,
-            count: count
         });
     });
-
-
-
 });
 
 
 
-// /*
-//  * GET user index
-//  */
-// router.get('/', function (req, res) {
-
-//     res.render('users', {
-//         title: 'Users'
-//     });
-
-// });
-
-
-// router.post('/', function (req, res) {
-
-//     User.find(function (err, users) {
-//         if (err)
-//             console.log(err);
-//         res.render('allUser', {
-//             title: "All user",
-//             users: users
-//         });
-//         // res.send(page);
-
-//     });
-
-// });
 /*
  * GET add user
  */
@@ -61,12 +39,10 @@ router.get('/add-user', isAdmin, function (req, res) {
     var name = "";
     var username = "";
     var password = "";
-    var admin = "";
 
     res.render('admin/addUser', {
         name: name,
         username: username,
-        admin: admin,
         password: password
     });
 })
@@ -78,51 +54,63 @@ router.get('/add-user', isAdmin, function (req, res) {
  */
 router.post('/add-user', function (req, res) {
 
-    req.checkBody('name', 'Name must have a value ! ').notEmpty();
-    req.checkBody('username', 'Username must have a value ! ').notEmpty();
-    req.checkBody('password', 'password must have a value ! ').notEmpty();
-
     var name = req.body.name;
+    var email = req.body.email;
     var username = req.body.username;
     var password = req.body.password;
+    var password2 = req.body.password2;
+
+    req.checkBody('name', 'Name is required!').notEmpty();
+    req.checkBody('email', 'Email is required!').isEmail();
+    req.checkBody('username', 'Username is required!').notEmpty();
+    req.checkBody('password', 'Password is required!').notEmpty();
+    req.checkBody('password2', 'Passwords do not match!').equals(password);
 
     var errors = req.validationErrors();
 
     if (errors) {
         res.render('admin/addUser', {
-            name: name,
-            username: username,
-            password: password
+            errors: errors,
+            user: null,
+            title: 'Add User'
         });
     } else {
-        User.findOne({
-            username: username
-        }, function (err, user) {
+        User.findOne({username: username}, function (err, user) {
+            if (err)
+                console.log(err);
+
             if (user) {
-                req.flash('danger', 'User username exists, chose another!');
-                res.render('admin/addUser', {
-                    name: name,
-                    username: username,
-                    password: password
-                });
+                req.flash('danger', 'Username exists, choose another!');
+                res.redirect('admin/addUser');
             } else {
                 var user = new User({
                     name: name,
+                    email: email,
                     username: username,
                     password: password,
-                    admin : 0
+                    admin: 0
                 });
-                user.save(function (err) {
-                    if (err)
-                        return console.log(err);
-                   
-                    req.flash('success', 'User added!');
-                    res.redirect('/admin/users');
+
+                bcrypt.genSalt(10, function (err, salt) {
+                    bcrypt.hash(user.password, salt, function (err, hash) {
+                        if (err)
+                            console.log(err);
+
+                        user.password = hash;
+
+                        user.save(function (err) {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                req.flash('success', 'Add user success!');
+                                res.redirect('admin/users')
+                            }
+                        });
+                    });
                 });
             }
         });
     }
-
 
 });
 
@@ -137,14 +125,13 @@ router.get('/edit-user/:id', isAdmin, function (req, res) {
         function (err, user) {
             if (err)
                 return console.log(err);
-
-
             res.render('admin/editUser', {
                 name: user.name,
                 username: user.username,
-                password: user.password,
+                admin: user.admin,
                 id: user._id
             });
+
         });
 })
 
@@ -154,14 +141,13 @@ router.get('/edit-user/:id', isAdmin, function (req, res) {
  */
 
 router.post('/edit-user/:id', function (req, res) {
-
     req.checkBody('name', 'Name must have a value ! ').notEmpty();
     req.checkBody('username', 'Username must have a value ! ').notEmpty();
-    req.checkBody('password', 'password must have a value ! ').notEmpty();
-
+    req.checkBody('admin', 'choose one ! ')
     var name = req.body.name;
     var username = req.body.username;
-    var password = req.body.password;
+    var admin = req.body.admin;
+    
     var id = req.params.id;
     var errors = req.validationErrors();
 
@@ -170,7 +156,7 @@ router.post('/edit-user/:id', function (req, res) {
             errors: errors,
             name: name,
             username: username,
-            password: password,
+            admin: admin,
             id: id
         });
     } else {
@@ -184,9 +170,9 @@ router.post('/edit-user/:id', function (req, res) {
                 req.flash('danger', 'Username exists, chose another!');
                 res.render('admin/editUser', {
                     name: name,
-            username: username,
-            password: password,
-            id: id
+                    username: username,
+                    admin: admin,
+                    id: id
                 });
             } else {
                 User.findById(id, function (err, user) {
@@ -194,13 +180,15 @@ router.post('/edit-user/:id', function (req, res) {
                         return console.log(err);
                     user.name = name;
                     user.username = username;
-                    user.password = password;
+                    user.admin = admin;
 
                     user.save(function (err) {
                         if (err)
                             return console.log(err);
-                      
+
                         req.flash('success', 'User edited!');
+                        console.log(user.admin);
+                        console.log(admin);
                         res.redirect('/admin/users/edit-user/' + id);
                     });
                 });
@@ -219,7 +207,7 @@ router.post('/edit-user/:id', function (req, res) {
 router.get('/delete-user/:id', isAdmin, function (req, res) {
     User.findByIdAndRemove(req.params.id, function (err) {
         if (err) return console.log(err);
-      
+
         req.flash('success', 'User deleted!');
         res.redirect('/admin/users/');
     });

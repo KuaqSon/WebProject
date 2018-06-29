@@ -1,23 +1,47 @@
 <%- include ../layouts/adminHeader %>
 
-    <h2 class="page-title">Thêm trang</h2>
-    <a href="/admin/pages" class="btn btn-primary">Quay lại danh sách trang</a>
+   
+<div class="form-sign">
+    <h1>Thêm tài khoảng</h1>
+    <br>
+    <form method="post" action="/users/register">
+    
+        <div class="form-group">
+            <label>Tên</label>
+            <input type="text" name="name" class="form-control" placeholder="Tên">
+        </div>
+    
+        <div class="form-group">
+            <label>Email</label>
+            <input type="text" name="email" class="form-control" placeholder="Email">
+        </div>
+        
+        <div class="form-group">
+            <label>Tên đăng nhập</label>
+            <input type="text" name="username" class="form-control" placeholder="Tên đăng nhập">
+        </div>
+    
+        <div class="form-group">
+            <label>Mật khẩu</label>
+            <input type="password" name="password" class="form-control"  placeholder="Mật khẩu">
+        </div>
+        
+        <div class="form-group">
+            <label>Xác nhận mật khẩu</label>
+            <input type="password" name="password2" class="form-control"  placeholder="Xác nhận mật khẩu">
+      
 
-    <form method="POST" action="/admin/user/add-user">
-
-        <div class="form-group">
-            <label for="">Tiêu đề</label>
-            <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Tiêu đề">
-        </div>
-        <div class="form-group">
-            <label for="">Slug</label>
-            <input type="text" class="form-control" name="slug" value="<%= slug %>" placeholder="Slug">
-        </div>
-        <div class="form-group">
-            <label for="">Nội dung</label>
-            <textarea class="form-control" id = "ta" name="content" cols="30" rows="10" placeholder="Nội dung" ><%= content %> </textarea>
-        </div>
-        <button class="btn btn-default">Thêm trang</button>
+        <button type="submit" class="btn btn-primary">Thêm tài khoảng</button>
     </form>
-
+</div>
     <%- include ../layouts/adminFooter %>
+    <script type="text/javascript">
+        function CheckedNotAdmin(){
+            document.getElementById("checkNotAdmin").checked = true;
+            document.getElementById("checkAdmin").checked = false;
+        }
+        function CheckedAdmin(){
+            document.getElementById("checkNotAdmin").checked = false;
+            document.getElementById("checkAdmin").checked = true;
+        }
+    </script>
