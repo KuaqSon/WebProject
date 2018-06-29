@@ -8,18 +8,18 @@
 
 
   <title>Vùng quản lý</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/adminstyle.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 
 <body>
 
-  <nav class="navbar navbar-inverse">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-          aria-controls="navbar">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -29,19 +29,19 @@
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li>
-            <a href="/admin/pages">Dang sách trang</a>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="/admin/pages">Dang sách trang</a>
           </li>
-          <li>
-            <a href="/admin/categories">Danh sách loại rau</a>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="/admin/categories">Danh sách loại rau</a>
           </li>
-          <li>
-              <a href="/admin/products">Danh sách mặt hàng</a>
+          <li class="nav-item">
+              <a class="nav-link text-dark" href="/admin/products">Danh sách mặt hàng</a>
           </li>
         </ul>
 
-        <ul class="nav navbar-nav navbar-right">
-        <li><a href="/users/logout">Đăng xuất</a></li>
+        <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link text-dark" href="/users/logout">Đăng xuất</a></li>
         </ul>
 
 

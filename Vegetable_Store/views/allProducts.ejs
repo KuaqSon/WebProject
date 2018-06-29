@@ -1,17 +1,22 @@
 <% include layouts/header %>
 
-    <div class="row products">
+    <div class="row products" id="products">
 
         <% products.forEach(function(p){ %>
-
-                <div class="col-xs-12 col-md-4 p">
+            <div class="col-md-3" >
+                <div class="col-xs-12 p card">
                     <a class="pa" href="/products/<%= p.category%>/<%=p.slug%>">
                         <img class = "pimage" src="/productImages/<%= p.id %>/<%= p.image%>" alt="">
                     </a>
-                    <h3><%= p.title%></h3>
-                    <h4><%= parseFloat(p.price)%> VND</h4>
-                    <a class="vd" href="/products/<%= p.category%>/<%= p.slug%>">Xem chi tiết mặt hàng</a>
+                    <div class="card-body">
+                        <h5><%= p.title%></h5>
+                        <h6><%= parseFloat(p.price)%> VND</h6>
+                        <form action="/products/<%= p.category%>/<%= p.slug%>"><input class="btn btn-success btn-sm" type="submit" value="Chi tiết"></form>
+                       <!-- <a class="vd" href="/products/<%= p.category%>/<%= p.slug%>">Xem chi tiết mặt hàng</a> -->
+                    </div>
                 </div>
+            </div>
+
                 <% }); %>
 
 

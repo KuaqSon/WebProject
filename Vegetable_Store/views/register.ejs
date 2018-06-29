@@ -1,35 +1,38 @@
-<% include layouts/header %>
+<% include layouts/header3 %>
 
-<h1><%= title %></h1>
-
-<form method="post" action="/users/register">
-
-    <div class="form-group">
-        <label>Name</label>
-        <input type="text" name="name" class="form-control" placeholder="Name">
-    </div>
-
-    <div class="form-group">
-        <label>Email</label>
-        <input type="text" name="email" class="form-control" placeholder="Email">
-    </div>
+<div class="form-sign">
+    <!-- <h1><%= title %></h1> -->
+    <h1>Đăng kí</h1>
+    <br>
+    <form method="post" action="/users/register">
     
-    <div class="form-group">
-        <label>Username</label>
-        <input type="text" name="username" class="form-control" placeholder="Username">
-    </div>
-
-    <div class="form-group">
-        <label>Password</label>
-        <input type="password" name="password" class="form-control"  placeholder="Password">
-    </div>
+        <div class="form-group">
+            <label>Tên</label>
+            <input type="text" name="name" class="form-control" placeholder="Tên">
+        </div>
     
-    <div class="form-group">
-        <label>Confirm Password</label>
-        <input type="password" name="password2" class="form-control"  placeholder="Confirm Password">
-    </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="text" name="email" class="form-control" placeholder="Email">
+        </div>
+        
+        <div class="form-group">
+            <label>Tên đăng nhập</label>
+            <input type="text" name="username" class="form-control" placeholder="Tên đăng nhập">
+        </div>
+    
+        <div class="form-group">
+            <label>Mật khẩu</label>
+            <input type="password" name="password" class="form-control"  placeholder="Mật khẩu">
+        </div>
+        
+        <div class="form-group">
+            <label>Xác nhận mật khẩu</label>
+            <input type="password" name="password2" class="form-control"  placeholder="Xác nhận mật khẩu">
+        </div>
+    
+        <button type="submit" class="btn btn-primary">Đăng ký</button>
+    </form>
+</div>
 
-    <button type="submit" class="btn btn-default">Đăng ký</button>
-</form>
-
-<% include layouts/footer %>
+<% include layouts/footer3 %>
