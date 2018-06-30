@@ -159,7 +159,7 @@ router.get('/edit-product/:id', isAdmin, function (req, res) {
                 console.log(err);
                 res.redirect('/admin/products');
             } else {
-                var galleryDir = 'Vegetable_Store/public/productImages/' + p._id + '/gallery';
+                var galleryDir = 'public/productImages/' + p._id + '/gallery';
                 var galleryImages = null;
 
                 fs.readdir(galleryDir, function (err, files) {
@@ -248,7 +248,7 @@ router.post('/edit-product/:id', function (req, res) {
 
                         if (imageFile != "") {
                             if (pimage != "") {
-                                fs.remove('Vegetable_Store/public/productImages/' + id + '/' + pimage, function (err) {
+                                fs.remove('public/productImages/' + id + '/' + pimage, function (err) {
                                     if (err)
                                         console.log(err);
                                 });
@@ -278,8 +278,8 @@ router.post('/edit-product/:id', function (req, res) {
 router.post('/product-gallery/:id', function (req, res) {
     var productImage = req.files.file;
     var id = req.params.id;
-    var path = 'Vegetable_Store/public/productImages/' + id + '/gallery/' + req.files.file.name;
-    var thumbsPath = 'Vegetable_Store/public/productImages/' + id + '/gallery/thumbs/' + req.files.file.name;
+    var path = 'public/productImages/' + id + '/gallery/' + req.files.file.name;
+    var thumbsPath = 'public/productImages/' + id + '/gallery/thumbs/' + req.files.file.name;
     productImage.mv(path, function (err) {
         if (err)
             console.log(err);
@@ -298,8 +298,8 @@ router.post('/product-gallery/:id', function (req, res) {
  * GET delete gallery
  */
 router.get('/delete-image/:image', isAdmin, function (req, res) {
-    var originalImage = 'Vegetable_Store/public/productImages/' + req.query.id + '/gallery/' + req.params.image;
-    var thumbsImage = 'Vegetable_Store/public/productImages/' + req.query.id + '/gallery/thumbs/' + req.params.image;
+    var originalImage = 'public/productImages/' + req.query.id + '/gallery/' + req.params.image;
+    var thumbsImage = 'public/productImages/' + req.query.id + '/gallery/thumbs/' + req.params.image;
 
     fs.remove(originalImage, function (err) {
         if (err) {

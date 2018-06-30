@@ -103,7 +103,7 @@ router.post('/add-user', function (req, res) {
                                 console.log(err);
                             } else {
                                 req.flash('success', 'Add user success!');
-                                res.redirect('admin/users')
+                                res.redirect('/admin/users');
                             }
                         });
                     });
