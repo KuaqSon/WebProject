@@ -30,11 +30,9 @@
         <% products.forEach(function(p){ %>
         <div class="col-md-4 col-sm-6 mb-3">
           <div class="lip-card">
-            <div style="height: 200px">
-              <a class="pa" href="/products/<%= p.category%>/<%=p.slug%>">
-                <img class= "w-100" src="/productImages/<%= p.id %>/<%= p.image%>" alt="">
-              </a>
-            </div>
+            <a class="pa" href="/products/<%= p.category%>/<%=p.slug%>" style="height: 200px">
+              <img class= "w-100" src="/productImages/<%= p.id %>/<%= p.image%>" alt="">
+            </a>
             <div class="card-body">
               <h5>
                 <%= p.title%>
