@@ -164,3 +164,17 @@ table.alignmiddle td{
     font-weight: bold;
     color: black !important;
 }
+
+.contact-header {
+    padding: 72px 32px;
+    text-align: left;
+}
+
+.contact-title {
+    margin-top: 32px;
+    font-size: 1.25em;
+    font-weight: bold;
+}
+.contact-title-item {
+    margin: 16px 0;
+}
