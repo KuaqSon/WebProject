@@ -1,3 +1,7 @@
+body {
+    background-color: rgb(246, 229, 220) !important;
+}
+
 img.pimage {
     width: 220px;
     height: 220px;
@@ -78,6 +82,25 @@ table.alignmiddle td{
     margin-right: auto;
     width: 500px;
     padding: 30px;
-    border-radius: 4px;
-    border: 2px solid #ced4da;
+    background-color: #ffff;
+    /* border-radius: 4px; */
+    /* border: 2px solid #ced4da; */
+}
+
+.brand-header {
+    /* background-color: #f8f9fa; */
+    background-color: #f8f9fa;
+    /* height: 50px; */
+    padding: 16px 0;
+}
+
+.brand-header .brand-header-text {
+    text-align: center;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.border-btt {
+    border: 2px solid gray;
+    border-radius: 6px;
 }

@@ -19,11 +19,10 @@ router.get('/', function (req, res) {
         if (!page) {
             res.redirect('/');
         } else {
-            // res.render('index', {
-            //     title: page.title,
-            //     content: page.content
-            // });
-            res.redirect('/products');
+            res.render('index', {
+                title: page.title,
+                content: page.content
+            });
         }
         // res.send(page);
 
