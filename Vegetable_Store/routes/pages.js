@@ -10,9 +10,7 @@ var Page = require('../models/page');
  */
 router.get('/', function (req, res) {
 
-    Page.findOne({
-        slug: 'home-page'
-    }, function (err, page) {
+    Page.find(function (err, page) {
         if (err)
             console.log(err);
 

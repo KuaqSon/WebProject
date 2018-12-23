@@ -104,3 +104,31 @@ table.alignmiddle td{
     border: 2px solid gray;
     border-radius: 6px;
 }
+
+.panel-block {
+    background-color: #ffff;
+}
+
+.lip-left {
+    margin: 16px 8px;
+}
+
+.lip-left .lip-left-item {
+    margin-top: 60px !important;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.lip-left .lip-left-item  .lip-all-btt {
+    margin-top: 32px;
+    padding: 8px;
+    background-color: black;
+    width: fit-content;
+    font-weight: bold;
+}
+
+.lip-left .lip-left-item  .lip-all-btt-a:hover {
+    background-color: white;
+    font-weight: bold;
+    color: black !important;
+}
