@@ -5,6 +5,7 @@ var fs = require('fs-extra');
 var Product = require('../models/product');
 // Get Product model
 var Category = require('../models/category');
+var Comment = require('../models/comment');
 
 
 /*
@@ -72,20 +73,68 @@ router.get('/:category/:product', function (req, res) {
                 if (err)
                     console.log(err);
                 else {
-                    galleryImages = files;
-                    res.render('product', {
-                        title: product.title,
-                        p: product,
-                        galleryImages: galleryImages,
-                        loggedIn: loggedIn
+                    // galleryImages = files;
+                    // res.render('product', {
+                    //     title: product.title,
+                    //     p: product,
+                    //     galleryImages: galleryImages,
+                    //     loggedIn: loggedIn
 
+                    // });
+
+                    Comment.find({
+                        slug: req.params.product
+                    }, function (err, comments) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            galleryImages = files;
+                            res.render('product', {
+                                title: product.title,
+                                p: product,
+                                galleryImages: galleryImages,
+                                loggedIn: loggedIn,
+                                comments: comments
+
+                            });
+                        }
                     });
                 }
             })
         }
     });
+});
 
-
+router.post('/:category/:product', function (req, res) {
+    const content = req.body.content;
+    const slug = req.body.slug;
+    const name = req.body.name;
+    Product.findOne({
+        slug: slug
+    }, function (err, product) {
+        if (err)
+            console.log(err);
+        else if(name === '' || content === '') {
+            res.redirect('/products/'+product.category+'/'+product.slug);
+        }
+        else {
+            var comment = new Comment({
+                name: name,
+                // idProduct: product._id,
+                slug: product.slug,
+                content: content
+            });
+            comment.save(function (err) {
+                if (err) {
+                    console.log(err);
+                }
+                else{
+                    console.log('/'+product.category+'/'+product.slug);
+                    res.redirect('/products/'+product.category+'/'+product.slug)
+                }
+            })
+        }
+    })
 });
 
 router.get('/search',function(req,res){
